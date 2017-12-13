@@ -52,11 +52,12 @@ def main(argv):
   backends = command.split("\n")
   backends_healthy, backends_sick = [], []
   for line in backends:
-    if line.startswith("boot") and line.find("test")==-1:
+    if not line.startswith("Backend") and line.find("test")==-1:
       if line.find("Healthy") != -1:
         backends_healthy.append(line.split(" ")[0])
       else:
-        backends_sick.append(line.split(" ")[0])
+        if not line == "":
+          backends_sick.append(line.split(" ")[0].split(".")[1])
 
   if backends_sick:
     print "%s backends are down.  %s" % (len(backends_sick), "".join(backends_sick))
