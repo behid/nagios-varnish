@@ -60,7 +60,7 @@ def main(argv):
           backends_sick.append(line.split(" ")[0].split(".")[1])
 
   if backends_sick:
-    print "%s backends are down.  %s" % (len(backends_sick), "".join(backends_sick))
+    print "%s backends are down. Down backend(s) are: %s" % (len(backends_sick), "".join(backends_sick))
     sys.exit(2)
 
   if not backends_sick and not backends_healthy:
